@@ -21,6 +21,7 @@ function userApi(app) {
                     res.status(200).json({
                         data: updateUsr,
                         data1:decoded,
+                        example: updateUsr,
                         message: 'user selected successfully'
                     });
                 }
