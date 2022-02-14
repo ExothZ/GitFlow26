@@ -5,12 +5,14 @@ const UserService = require('../services/activate-user');
 function userApi(app) {
     const router = express.Router();
     app.use("/api/activate-user", router);
+    console.log();
 
     const userService = new UserService();
     console.log();
 
     router.put("/", async function (req, res, next) {
         const { body: user } = req;
+        console.log();
         try {
             const usr = await userService.getUser(user.id);
             if (usr) {
@@ -23,10 +25,12 @@ function userApi(app) {
                         example: updateUsr,
                         message: 'user selected successfully'
                     });
+                    console.log();
                 }
             }
         } catch (err) {
             next(err);
+            console.log();
         }
     });
 
