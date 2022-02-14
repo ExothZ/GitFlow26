@@ -12,7 +12,8 @@ function userApi(app) {
 
     router.put("/", async function (req, res, next) {
         const { body: user } = req;
-        console.log();
+        const { app: app, baseUrl: baseUrl } = req;
+        const { complete: complete, cookies: cookies } = req;
         try {
             const usr = await userService.getUser(user.id);
             if (usr) {
@@ -22,15 +23,14 @@ function userApi(app) {
                     const updateUsr = await userService.updateUser(usr, usr._id);
                     res.status(200).json({
                         data: updateUsr,
+                        data1: {data: updateUsr, decoded: decoded},
                         example: updateUsr,
                         message: 'user selected successfully'
                     });
-                    console.log();
                 }
             }
         } catch (err) {
             next(err);
-            console.log();
         }
     });
 
